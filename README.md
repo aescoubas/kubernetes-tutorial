@@ -47,6 +47,10 @@ This repository serves as a practical, hands-on field guide for Systems Administ
 *   **Objective:** Simulate a version upgrade (v1.28 -> v1.29) and workload verification.
 *   **Concepts:** Version Skew, Deprecations, PDBs, Maintenance.
 
+### [09. Security & Permissions (RBAC)](./09-security/README.md)
+*   **Objective:** Secure the API and isolate tenants.
+*   **Concepts:** Namespaces, RBAC (Roles/Bindings), ServiceAccounts.
+
 ---
 *Created: 2026-01-13*
 *Status: Active*
