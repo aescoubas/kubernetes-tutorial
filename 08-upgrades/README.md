@@ -82,3 +82,8 @@ minikube start --nodes 4 --memory 2g
 3.  **Rollback:** (Research) If the upgrade fails, can you easily "downgrade" a Kubernetes cluster?
 4.  **Node Skew:** In a real 4-node cluster, is it allowed to have the Control Plane on v1.29 and Worker Nodes on v1.28?
 5.  **Pod Disruption Budget:** Create a `PodDisruptionBudget` (PDB) for your `legacy-app` that ensures at least 2 replicas are always available. This protects the app during the node drains that happen during upgrades.
+
+## 6. References & Documentation
+*   [Upgrading kubeadm clusters](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
+*   [Version Skew Policy](https://kubernetes.io/releases/version-skew-policy/)
+*   [Deprecated API Migration Guide](https://kubernetes.io/docs/reference/using-api/deprecation-guide/)

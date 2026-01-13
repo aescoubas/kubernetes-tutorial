@@ -89,3 +89,9 @@ kubectl delete -f .
 3.  **LimitRange:** Create a `LimitRange` in a namespace that automatically assigns a default memory limit of `200Mi` to any pod that doesn't specify one. Launch a naked pod and verify it got the limit.
 4.  **CPU Throttling:** (Conceptual/Research) If a Pod hits its Memory limit, it dies (OOM). What exactly happens when it hits its CPU limit? Does it crash?
 5.  **Node Capacity:** Find out exactly how much "allocatable" CPU and Memory `minikube-m02` has. (Hint: `kubectl describe node`).
+
+## 6. References & Documentation
+*   [Resource Management for Pods](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+*   [Configure Quality of Service (QoS)](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
+*   [Resource Quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/)
+*   [Limit Ranges](https://kubernetes.io/docs/concepts/policy/limit-range/)

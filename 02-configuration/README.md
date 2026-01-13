@@ -69,3 +69,9 @@ kubectl delete -f .
 3.  **Secret Decoding:** You found a secret in the cluster. The value is `RWlnaHQgTWlsZQ==`. Decode it to find the street name.
 4.  **File-based Secret:** Create a Secret named `ssh-key-secret` from a local file named `id_rsa` (you can create a dummy file for this).
 5.  **Environment Precedence:** If you define an environment variable manually in the Pod spec *and* inject the same variable name from a ConfigMap, which one wins? Create a test pod to find out.
+
+## 7. References & Documentation
+*   [ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/)
+*   [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
+*   [12-Factor App: Config](https://12factor.net/config)
+*   [Encrypting Secret Data at Rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/)

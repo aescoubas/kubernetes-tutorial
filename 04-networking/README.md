@@ -96,3 +96,8 @@ kubectl delete -f .
 3.  **Multiple Paths:** Update `ingress.yaml` to serve the app on *two* paths: `/` and `/v2`. Both should point to the same backend for this test.
 4.  **Host-Based Routing:** Update `ingress.yaml` to accept traffic for a second host: `api.hello.world`.
 5.  **Port Mapping:** Create a Service that listens on port `80` but maps traffic to target container port `8080`. (This is how `web-service` is already configured—verify it in the YAML).
+
+## 8. References & Documentation
+*   [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+*   [Ingress Controllers](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)
+*   [Service Types (ClusterIP, NodePort)](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)

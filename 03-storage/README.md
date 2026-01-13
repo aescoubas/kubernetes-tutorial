@@ -130,3 +130,8 @@ kubectl delete -f .
 3.  **Expansion:** Edit the `local-pvc` to request `1Gi` instead of `500Mi`. Check the PVC status conditions. *Note: Requires a StorageClass that supports resizing.*
 4.  **Dual Mount:** Create a Pod that mounts the *same* PVC to two different paths: `/data` and `/backup`.
 5.  **Manual Cleanup:** Delete the `local-pvc` PVC. If you set the policy to `Retain` in Exercise 2, check if the PV still exists.
+
+## 8. References & Documentation
+*   [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
+*   [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/)
+*   [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)

@@ -130,3 +130,7 @@ If the cluster fails to start due to lack of RAM:
 1.  Lower the memory per node: `minikube start --nodes 4 --memory 1500m`
 2.  Reduce node count: `minikube start --nodes 2` (Minimum for some labs).
 
+## 8. References & Documentation
+*   [Minikube Start Guide](https://minikube.sigs.k8s.io/docs/start/)
+*   [Kubernetes Components (Architecture)](https://kubernetes.io/docs/concepts/overview/components/)
+*   [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

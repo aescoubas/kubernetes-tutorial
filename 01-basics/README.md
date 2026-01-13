@@ -126,3 +126,10 @@ kubectl delete -f .
 3.  **Label Selection:** Create a Service that tries to select pods with the label `app: wrong-label`. Observe that the Service is created but has no Endpoints.
 4.  **Log Extraction:** Start a pod that fails immediately (e.g., `busybox` with a command `this-command-does-not-exist`). Retrieve the logs to see the error message.
 5.  **Multi-Container Pod:** Write a YAML manifest for a Pod that contains *two* containers: one running `nginx` and another running `busybox` (sleeping).
+
+## 8. References & Documentation
+*   [Pods (Concepts)](https://kubernetes.io/docs/concepts/workloads/pods/)
+*   [Deployments (Concepts)](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+*   [Services (Concepts)](https://kubernetes.io/docs/concepts/services-networking/service/)
+*   [Kubernetes API Overview](https://kubernetes.io/docs/concepts/overview/kubernetes-api/)
+*   [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)

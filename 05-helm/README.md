@@ -106,3 +106,8 @@ helm uninstall my-custom-app
 3.  **Upgrade:** Change the `replicaCount` in your running release from 3 to 1 using the `helm upgrade` command.
 4.  **History & Rollback:** Check the revision history of your release, then rollback to the previous version (where replicas were 3).
 5.  **User Values:** There is a command to see *only* the values that a user supplied (overriding the defaults) for a specific release. Find and run this command.
+
+## 7. References & Documentation
+*   [Helm Official Documentation](https://helm.sh/docs/)
+*   [Artifact Hub (Find Charts)](https://artifacthub.io/)
+*   [Helm Best Practices](https://helm.sh/docs/chart_best_practices/)

@@ -112,3 +112,8 @@ kubectl delete deployment ops-test
 3.  **Manual Uncordon:** Manually cordon `minikube-m02` and then check the status of the node. Uncordon it without using the `uncordon` command (hint: edit the node object or use `kubectl patch`).
 4.  **Tolerations:** Create a pod that can "tolerate" the taint we created in Experiment C (`specific=workload:NoSchedule`) and schedule it on Node 4.
 5.  **Clean Sweep:** Remove all labels and taints you added to the nodes during this module to return the cluster to a neutral state.
+
+## 6. References & Documentation
+*   [Safely Drain a Node](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/)
+*   [Taints and Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
+*   [Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
