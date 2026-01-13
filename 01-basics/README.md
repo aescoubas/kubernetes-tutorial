@@ -74,6 +74,8 @@ Kubernetes is extensible. You are not limited to the default resources (Pods, Se
 ### Experiment B: The Deployment (Self-Healing)
 *File: `deployment.yaml`*
 
+**Definition:** A Deployment is a higher-level abstraction that manages ReplicaSets. It provides declarative updates (rollouts/rollbacks) and ensures the desired number of pods are always running. In this experiment, we configure it to maintain **3 replicas** of our Nginx pod.
+
 1.  **Deploy:**
     ```bash
     kubectl apply -f deployment.yaml
