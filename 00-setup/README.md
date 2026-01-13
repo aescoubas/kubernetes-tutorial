@@ -4,9 +4,39 @@
 Initialize a local **Multi-Node** Kubernetes cluster using **Minikube**. We will simulate a robust production-like environment with 4 nodes to practice failover and maintenance.
 
 ## 2. Theory: The Cluster Architecture
-A standard Kubernetes cluster consists of:
-*   **Control Plane (Node 1):** The "Brain". Manages the API Server, etcd (database), and Scheduler.
-*   **Worker Nodes (Nodes 2, 3, 4):** The "Muscle". They run the actual applications.
+Kubernetes is not a single binary; it is a system of cooperating services.
+
+### The Control Plane (The Brain)
+These components usually run on the "Master" node. They make decisions.
+
+1.  **kube-apiserver:** The Front Door.
+    *   The *only* component that talks to `kubectl` or the outside world.
+    *   All other components watch this API to know what to do.
+2.  **etcd:** The Memory.
+    *   A highly consistent key-value store.
+    *   The "source of truth" for the cluster. If you lose `etcd`, you lose the cluster.
+3.  **kube-scheduler:** The Matchmaker.
+    *   Watches for new Pods that have no Node assigned.
+    *   Selects the best Node based on resources (CPU/RAM), taints, and affinity rules.
+4.  **kube-controller-manager:** The Boss.
+    *   A collection of control loops (Node Controller, Replication Controller, etc.).
+    *   Example: "I see 2 replicas, but the user wants 3. I will create a new Pod object."
+5.  **cloud-controller-manager:** The Translator.
+    *   Talks to the underlying cloud provider (AWS/GCP/Azure) to provision LoadBalancers or Storage. (Not present in bare-metal/Minikube usually).
+
+### The Worker Nodes (The Muscle)
+These run on every node in the cluster. They do the heavy lifting.
+
+1.  **kubelet:** The Captain.
+    *   An agent that runs on *every* node.
+    *   Talks to the API Server. "What Pods should I run?"
+    *   Talks to the Container Runtime. "Please start this Docker container."
+    *   Reports status back to the API Server. "I am alive, and the pod is running."
+2.  **kube-proxy:** The Networker.
+    *   Maintains network rules (via iptables or IPVS).
+    *   Ensures traffic destined for a Service IP actually reaches the correct Pod.
+3.  **Container Runtime:** The Engine.
+    *   The software that actually runs the containers (e.g., Docker Engine, containerd, CRI-O).
 
 ## 3. Requirements (Multi-Node Lab)
 Since we are running 4 virtual nodes, the hardware requirements are higher than a standard "Hello World" setup.
