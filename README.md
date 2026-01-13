@@ -43,6 +43,10 @@ This repository serves as a practical, hands-on field guide for Systems Administ
 *   **Objective:** Managing CPU/Memory allocation and constraints.
 *   **Concepts:** Requests, Limits, QoS Classes, OOMKilled, Quotas.
 
+### [08. Cluster Upgrades & Versioning](./08-upgrades/README.md)
+*   **Objective:** Simulate a version upgrade (v1.28 -> v1.29) and workload verification.
+*   **Concepts:** Version Skew, Deprecations, PDBs, Maintenance.
+
 ---
 *Created: 2026-01-13*
 *Status: Active*
