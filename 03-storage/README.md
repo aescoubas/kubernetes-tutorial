@@ -14,13 +14,69 @@ Kubernetes separates the *request* for storage from the *implementation* of stor
 *   **Kubernetes:** Matches the Claim (PVC) to a Volume (PV). If using *Dynamic Provisioning*, it creates the PV automatically.
 
 ## 3. Concepts
-*   **PersistentVolumeClaim (PVC):** The ticket. A request for resources.
-*   **PersistentVolume (PV):** The resource. The actual disk/slice.
-*   **Access Modes:**
-    *   `ReadWriteOnce (RWO)`: Mounted by a single node (typical for Block Storage like EBS).
-    *   `ReadWriteMany (RWX)`: Mounted by multiple nodes (typical for NFS/File Storage).
 
-## 4. Lab Experiments
+### PersistentVolumeClaim (PVC)
+The "Ticket". A request for resources by a user.
+*   **Capacity:** How much space? (e.g., `10Gi`)
+*   **Access Mode:**
+    *   `ReadWriteOnce (RWO)`: Mounted by a single node (Block Storage).
+    *   `ReadWriteMany (RWX)`: Mounted by multiple nodes (NFS/File Storage).
+
+### PersistentVolume (PV)
+The "Resource". The actual piece of storage captured in the cluster.
+*   It has a lifecycle independent of any individual Pod.
+*   It contains the details of the backend (IP address, Path, Volume ID).
+
+### StorageClass
+The "Profile". It tells Kubernetes *how* to create a PV dynamically.
+*   **Provisioner:** The plugin responsible for creating the storage (e.g., `kubernetes.io/aws-ebs`, `nfs-subdir-external-provisioner`).
+*   **ReclaimPolicy:** What happens to the data when the PVC is deleted?
+    *   `Delete`: The underlying storage is wiped (Default).
+    *   `Retain`: The storage remains for manual recovery.
+
+## 4. Deep Dive: NFS & Dynamic Provisioning
+In our Minikube lab, we use a simple `hostPath` provisioner (saving files to the VM's disk). In a real production environment using **NFS**, the flow looks like this:
+
+### 1. The Sysadmin sets up the StorageClass
+This requires an **NFS Provisioner** (a pod running in the cluster that talks to your NAS).
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-client
+provisioner: k8s-sigs.io/nfs-subdir-external-provisioner # The software handling requests
+parameters:
+  archiveOnDelete: "false"
+```
+
+### 2. The Developer creates a PVC
+They specifically request the `nfs-client` class.
+```yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: my-nfs-data
+spec:
+  storageClassName: nfs-client  # <--- Matches the class above
+  accessModes:
+    - ReadWriteMany             # <--- NFS supports multiple writers!
+  resources:
+    requests:
+      storage: 5Gi
+```
+
+### 3. The Magic (Dynamic Provisioning)
+1.  The **Provisioner** sees the PVC.
+2.  It talks to the NFS Server (e.g., `192.168.1.50:/exports`).
+3.  It creates a subdirectory: `/exports/default-my-nfs-data-pvc-12345`.
+4.  It creates a **PersistentVolume (PV)** object in Kubernetes pointing to that folder.
+5.  It binds the PVC to the PV.
+
+### 4. The Result
+The Developer gets a 5GB volume that automatically connects to the NFS server, without ever knowing the server's IP address.
+
+## 5. Lab Experiments (Minikube)
+*Note: We will use the default Minikube storage class, which simulates this behavior locally.*
 
 ### Experiment A: Claiming Storage
 *File: `pvc.yaml`*
@@ -61,7 +117,7 @@ Kubernetes separates the *request* for storage from the *implementation* of stor
     kubectl exec storage-pod -- cat /data/test.txt
     ```
 
-## 5. Cleanup
+## 6. Cleanup
 ```bash
 kubectl delete -f .
 ```
