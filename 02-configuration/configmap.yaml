@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  # Key-value pairs
+  app_mode: "production"
+  app_color: "blue"
+  
+  # File-like content
+  app.properties: |
+    feature_x=true
+    feature_y=false
+    max_retries=5

@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-demo-pod
+spec:
+  containers:
+    - name: demo-container
+      image: alpine
+      command: ["/bin/sh", "-c", "sleep 3600"] # Keep running
+      
+      # 1. Inject as Environment Variables
+      env:
+        - name: APP_MODE
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: app_mode
+        - name: APP_COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: app_color
+        - name: APP_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: api_key
+              
+      # 2. Inject as Volume (Files)
+      volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+  
+  volumes:
+    - name: config-volume
+      configMap:
+        name: app-config
