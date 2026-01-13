@@ -1,4 +1,4 @@
-# Module 06: Cluster Operations (Node Management)
+# Module 06: Node Management
 
 ## 1. Objective
 Act as a Cluster Administrator. Manage the underlying infrastructure, perform maintenance on nodes without downtime, and control where workloads run.
@@ -103,3 +103,12 @@ Example: "Don't schedule anything on this node unless it explicitly tolerates th
 ```bash
 kubectl delete deployment ops-test
 ```
+
+## 5. Exercises
+*Solutions are available in the `solutions/` directory.*
+
+1.  **Node Selector:** Create a pod that is *forced* to run on `minikube-m02` using the `nodeSelector` field (use the label `hardware=high-mem` created in Exp A).
+2.  **Drain Failure:** Try to drain `minikube-m04`. If it fails, read the error message. Why did it fail? (Hint: Do you have a pod with local storage or an unmanaged pod?).
+3.  **Manual Uncordon:** Manually cordon `minikube-m02` and then check the status of the node. Uncordon it without using the `uncordon` command (hint: edit the node object or use `kubectl patch`).
+4.  **Tolerations:** Create a pod that can "tolerate" the taint we created in Experiment C (`specific=workload:NoSchedule`) and schedule it on Node 4.
+5.  **Clean Sweep:** Remove all labels and taints you added to the nodes during this module to return the cluster to a neutral state.

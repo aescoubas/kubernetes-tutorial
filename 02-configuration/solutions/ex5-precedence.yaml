@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: precedence-test
+spec:
+  containers:
+    - name: test
+      image: alpine
+      command: ["/bin/sh", "-c", "sleep 3600"]
+      env:
+        - name: APP_COLOR
+          value: "RED"
+      envFrom:
+        - configMapRef:
+            name: app-config

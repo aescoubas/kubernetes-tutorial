@@ -81,3 +81,12 @@ To remove resources created in this module:
 ```bash
 kubectl delete -f .
 ```
+
+## 6. Exercises
+*Solutions are available in the `solutions/` directory.*
+
+1.  **Imperative Pod:** Create a pod named `quick-pod` running the image `busybox` that executes the command `sleep 3600`. Do this using *only* the `kubectl run` command (no YAML).
+2.  **Scaling Up:** Scale the `nginx-deployment` from Experiment B to **5 replicas** using the command line.
+3.  **Label Selection:** Create a Service that tries to select pods with the label `app: wrong-label`. Observe that the Service is created but has no Endpoints.
+4.  **Log Extraction:** Start a pod that fails immediately (e.g., `busybox` with a command `this-command-does-not-exist`). Retrieve the logs to see the error message.
+5.  **Multi-Container Pod:** Write a YAML manifest for a Pod that contains *two* containers: one running `nginx` and another running `busybox` (sleeping).

@@ -121,3 +121,12 @@ The Developer gets a 5GB volume that automatically connects to the NFS server, w
 ```bash
 kubectl delete -f .
 ```
+
+## 7. Exercises
+*Solutions are available in the `solutions/` directory.*
+
+1.  **Pending Claim:** Create a PVC named `too-big` requesting `100Ti` of storage. Apply it and check its status. Why is it `Pending` (or `Bound` if using Minikube dynamic hostpath)? *Note: Minikube's default provisioner often fakes success, but standard cloud ones would wait.*
+2.  **Reclaim Policy:** Find the PersistentVolume (PV) that was created for your `local-pvc`. Change its ReclaimPolicy from `Delete` to `Retain` using `kubectl patch`.
+3.  **Expansion:** Edit the `local-pvc` to request `1Gi` instead of `500Mi`. Check the PVC status conditions. *Note: Requires a StorageClass that supports resizing.*
+4.  **Dual Mount:** Create a Pod that mounts the *same* PVC to two different paths: `/data` and `/backup`.
+5.  **Manual Cleanup:** Delete the `local-pvc` PVC. If you set the policy to `Retain` in Exercise 2, check if the PV still exists.

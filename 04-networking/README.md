@@ -87,3 +87,12 @@ Instead of editing your computer's DNS (`/etc/hosts`), we can tell `curl` "prete
 ```bash
 kubectl delete -f .
 ```
+
+## 7. Exercises
+*Solutions are available in the `solutions/` directory.*
+
+1.  **Service Discovery:** Run a temporary `busybox` pod and try to reach the `web-service` by its DNS name (`web-service.default.svc.cluster.local`). What command did you use?
+2.  **Endpoint Inspection:** Check the "Endpoints" of `web-service`. These are the actual IPs of the backend pods. Kill one pod and see if the Endpoints update.
+3.  **Multiple Paths:** Update `ingress.yaml` to serve the app on *two* paths: `/` and `/v2`. Both should point to the same backend for this test.
+4.  **Host-Based Routing:** Update `ingress.yaml` to accept traffic for a second host: `api.hello.world`.
+5.  **Port Mapping:** Create a Service that listens on port `80` but maps traffic to target container port `8080`. (This is how `web-service` is already configured—verify it in the YAML).

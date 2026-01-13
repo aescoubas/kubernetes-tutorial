@@ -35,9 +35,13 @@ This repository serves as a practical, hands-on field guide for Systems Administ
 *   **Objective:** Manage complex applications with the "apt/yum" of K8s.
 *   **Concepts:** Charts, Repositories, Releases, Values.
 
-### [06. Cluster Operations](./06-cluster-ops/README.md)
+### [06. Node Management](./06-node-management/README.md)
 *   **Objective:** Administrator tasks: Node maintenance and scheduling controls.
 *   **Concepts:** Cordon, Drain, Taints, Labels.
+
+### [07. Resource Management](./07-resource-management/README.md)
+*   **Objective:** Managing CPU/Memory allocation and constraints.
+*   **Concepts:** Requests, Limits, QoS Classes, OOMKilled, Quotas.
 
 ---
 *Created: 2026-01-13*

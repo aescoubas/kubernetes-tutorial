@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: greedy-pod
+spec:
+  containers:
+  - name: cpu-eater
+    image: nginx
+    resources:
+      requests:
+        cpu: "100" # Requesting 100 Cores!
+        memory: "100Gi"

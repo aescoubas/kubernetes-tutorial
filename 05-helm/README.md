@@ -97,3 +97,12 @@ We have provided a minimal chart in the `simple-chart/` directory.
 ```bash
 helm uninstall my-custom-app
 ```
+
+## 6. Exercises
+*Solutions are available in the `solutions/` directory.*
+
+1.  **Template Rendering:** Render the `simple-chart` templates to a local file named `manifest.yaml` instead of installing them.
+2.  **Value Override:** Install `simple-chart` again, but this time change the `image.tag` to `latest` and `service.type` to `NodePort` using the `--set` flag.
+3.  **Upgrade:** Change the `replicaCount` in your running release from 3 to 1 using the `helm upgrade` command.
+4.  **History & Rollback:** Check the revision history of your release, then rollback to the previous version (where replicas were 3).
+5.  **User Values:** There is a command to see *only* the values that a user supplied (overriding the defaults) for a specific release. Find and run this command.

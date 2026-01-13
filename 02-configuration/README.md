@@ -60,3 +60,12 @@ Kubernetes solves this with **ConfigMaps** (plain text) and **Secrets** (obfusca
 ```bash
 kubectl delete -f .
 ```
+
+## 6. Exercises
+*Solutions are available in the `solutions/` directory.*
+
+1.  **Literal Config:** Create a ConfigMap named `game-config` containing the key `lives` with value `3`, using *only* the command line (no YAML).
+2.  **All-in-One Env:** Modify `pod-with-config.yaml` so that *all* key-value pairs in the `app-config` ConfigMap are injected as environment variables at once (using `envFrom`), instead of specifying them one by one.
+3.  **Secret Decoding:** You found a secret in the cluster. The value is `RWlnaHQgTWlsZQ==`. Decode it to find the street name.
+4.  **File-based Secret:** Create a Secret named `ssh-key-secret` from a local file named `id_rsa` (you can create a dummy file for this).
+5.  **Environment Precedence:** If you define an environment variable manually in the Pod spec *and* inject the same variable name from a ConfigMap, which one wins? Create a test pod to find out.
