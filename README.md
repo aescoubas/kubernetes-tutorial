@@ -31,6 +31,10 @@ This repository serves as a practical, hands-on field guide for Systems Administ
 *   **Objective:** Exposing services to the external world efficiently.
 *   **Concepts:** Ingress, Ingress Controllers.
 
+### [05. Package Management with Helm](./05-helm/README.md)
+*   **Objective:** Manage complex applications with the "apt/yum" of K8s.
+*   **Concepts:** Charts, Repositories, Releases, Values.
+
 ---
 *Created: 2026-01-13*
 *Status: Active*
