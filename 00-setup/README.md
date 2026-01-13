@@ -130,11 +130,3 @@ If the cluster fails to start due to lack of RAM:
 1.  Lower the memory per node: `minikube start --nodes 4 --memory 1500m`
 2.  Reduce node count: `minikube start --nodes 2` (Minimum for some labs).
 
-## 8. Exercises
-*Solutions are available in the `solutions/` directory.*
-
-1.  **Cluster Inspection:** List all resources in the `kube-system` namespace. This is where the cluster's internal services live.
-2.  **Internal Access:** SSH into the Control Plane node (`minikube`) and check the running processes.
-3.  **Component Status:** Use `kubectl` to check the health of the scheduler and controller-manager (Note: In newer k8s versions, these are exposed via Events or Pod statuses).
-4.  **Node Details:** Find the Internal IP address and OS Image of the node `minikube-m02`.
-5.  **Context Switching:** Create a new namespace called `lab-00` and switch your current context to use it by default.
