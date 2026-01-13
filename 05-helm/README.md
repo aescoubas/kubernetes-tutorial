@@ -3,12 +3,16 @@
 ## 1. Objective
 Learn to manage complex Kubernetes applications using **Helm**, the "apt/yum" of Kubernetes. We will install a pre-made chart and then deconstruct a custom one.
 
-## 2. Concepts
+## 2. Theory: Why Helm?
+Raw YAML manifests (like `deployment.yaml`) are static.
+*   *Problem:* What if I want to deploy the same app to "Dev" (1 replica) and "Prod" (10 replicas)? Do I maintain two files?
+*   *Solution:* **Templating.** Helm replaces static values with variables (`{{ .Values.replicaCount }}`).
 
-*   **Chart:** A package containing all the resource definitions (YAMLs) to run an application.
-*   **Repository:** A collection of charts (like a Docker Registry or yum repo).
-*   **Release:** An instance of a chart running in your cluster.
-*   **Values:** The configuration interface. You change `values.yaml` to customize the deployment without touching the complex templates.
+### Key Concepts
+*   **Chart:** The package. A collection of templates.
+*   **Repository:** The library. A server hosting Charts (like Docker Hub or `apt` repos).
+*   **Release:** The running instance. You can install the *same* chart 5 times as 5 different releases.
+*   **Values:** The configuration interface. Simple knobs you turn to configure the complex machinery underneath.
 
 ## 3. Installation Log
 

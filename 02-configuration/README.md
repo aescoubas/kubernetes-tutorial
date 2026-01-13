@@ -3,19 +3,27 @@
 ## 1. Objective
 Inject configuration data and sensitive credentials into Pods without modifying the container image.
 
-## 2. Concepts
+## 2. Theory: The 12-Factor App
+A core principle of modern apps is strict separation of **Config** from **Code**.
+*   **Code:** The Docker image (immutable, same across Dev/Test/Prod).
+*   **Config:** The environment-specific settings (DB URLs, API keys, feature flags).
 
-*   **ConfigMap:** Stores non-confidential data in key-value pairs.
-*   **Secret:** Stores sensitive data (passwords, keys) encoded in base64.
-*   **Environment Variables:** One way to expose this data to the container.
-*   **Volumes:** Another way to expose this data (as files).
+Kubernetes solves this with **ConfigMaps** (plain text) and **Secrets** (obfuscated).
 
-## 3. Lab Experiments
+## 3. Concepts
+*   **ConfigMap:** A dictionary of non-confidential data. Can be injected as Environment Variables or mounted as config files (e.g., `nginx.conf`).
+*   **Secret:** Similar to ConfigMaps but intended for sensitive data.
+    *   *Warning:* By default, Secrets are only base64-encoded, **not encrypted**. Anyone with API access can decode them. In production, you enable *Encryption at Rest* or use external vaults.
+*   **Environment Variables:** The most common way to inject simple values (Key=Value).
+*   **Volumes:** Used for complex config files. The file appears in the container filesystem. If you update the ConfigMap, the file in the container updates automatically (eventually).
+
+## 4. Lab Experiments
 
 ### Experiment A: Creating Data
 *Files: `configmap.yaml`, `secret.yaml`*
 
-1.  **Inspect `secret.yaml`:** Note that values are base64 encoded.
+1.  **Inspect `secret.yaml`:**
+    *   *Concept:* Kubernetes expects base64 values in the manifest to avoid newlines breaking YAML.
     *   *To encode:* `echo -n 'my-password' | base64`
     *   *To decode:* `echo -n 'bXktcGFzc3dvcmQ=' | base64 --decode`
 2.  **Apply configurations:**
@@ -48,7 +56,7 @@ Inject configuration data and sensitive credentials into Pods without modifying 
     kubectl exec config-demo-pod -- cat /etc/config/app.properties
     ```
 
-## 4. Cleanup
+## 5. Cleanup
 ```bash
 kubectl delete -f .
 ```
